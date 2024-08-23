@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Image Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: white;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+		.logo span {
+            color: blue; /* Change this color to whatever you like */
+        }
+		.logo .search {
+            cursor: pointer;
+        }
+		.title{
+			display: flex;
+			padding: 20px;
+			color: red;
+			font-size: 20px;
+			font-weight: bold;
+			border-bottom: 1px solid #333333;
+		}
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            margin-bottom: 5px;
+			font-size: 15px;
+        }
+        .form-group input, .form-group select {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .buttons input {
+            background: blue;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+            height: 36px;
+            line-height: 27px;
+            margin: 0 5px;
+            padding: 0 16px;
+            font-size: 14px;
+			color: white;
+            cursor: pointer;
+        }
+        .buttons input:hover {
+            border: 1px solid blue;
+        }
+		#heading{
+			padding: 20px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img class="search" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" onclick="location.href='index.html';">
+			<span>by alaa & ali</span>
+        </div>
+		<div class="title">
+			Advanced Search
+		</div>
+		<div id="heading">Find pages with</div>
+        <form action="https://google.com/search">
+            <div class="form-group">
+                <label for="as_q">all these words:</label>
+                <input type="text" name="as_q" id="as_q">
+            </div>
+            <div class="form-group">
+                <label for="as_q">this exact word or phrase:</label>
+                <input type="text" name="as_epq" id="as_epq">
+            </div>
+			<div class="form-group">
+                <label for="as_q">any of these words:</label>
+                <input type="text" name="as_oq" id="as_oq">
+            </div>
+			<div class="form-group">
+                <label for="as_q">none of these words:</label>
+                <input type="text" name="as_eq" id="as_eq">
+            </div>
+            <div class="buttons">
+                <input type="submit" value="Advanced Search">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
