@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta name="viewport" content="wodth-device-width, initial-scale=1.8">
+        <title>Search</title>
+		<style>
+		body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .logo {
+            margin-top: 150px;
+        }
+		.logo span {
+            color: blue; /* Change this color to whatever you like */
+        }
+		.logo .search {
+            cursor: pointer;
+        }
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            width: 50%;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 24px;
+            border: 1px solid #dfe1e5;
+        }
+        .search-bar input {
+            flex: 1;
+            height: 44px;
+            padding: 0 10px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-radius: 24px;
+        }
+		.search-bar .image-search {
+            width: 24px;
+            height: 24px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+		.search-bar:hover {
+            border: 1px solid black;
+        }
+		.buttons input:hover {
+            border: 1px solid black;
+        }
+		.buttons {
+            margin-top: 20px;
+        }
+        .buttons input {
+            background: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            height: 36px;
+            line-height: 27px;
+            margin: 0 5px;
+            padding: 0 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+	</style>
+    </head>
+    <body>
+		<div class="logo">
+			<img class="search" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" onclick="location.href='index.html';">
+			<span>images by alaa & ali</span>
+		</div>
+		<div class="search-bar">
+			<form action="https://google.com/search">
+			<input type="text" name="q">
+			<input type="hidden" name="tbm" value="isch">
+		</div>
+		<div class="buttons">
+			<input type="submit" value="Google Search">
+			</form>
+		</div>
+    </body>
+</html>
