@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<style>
+		body {
+			background-color: #f0f8ff;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			font-family: 'Arial', sans-serif;
+		}
+
+		#app {
+			text-align: center;
+			padding: 20px;
+			border-radius: 10px;
+			background-color: #ffffff;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		}
+
+		#problem {
+			font-size: 72px;
+			margin-bottom: 20px;
+			transition: transform 0.3s ease;
+		}
+
+		.incorrect {
+			color: red;
+			animation: shake 0.3s ease;
+		}
+
+		#winner {
+			font-size: 72px;
+			color: green;
+			animation: winnerAnimation 1s ease-in-out infinite;
+		}
+
+		#app input {
+			font-size: 24px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 2px solid #ccc;
+			width: 100px;
+			text-align: center;
+			transition: border-color 0.3s ease;
+		}
+
+		#app input:focus {
+			border-color: #007bff;
+			outline: none;
+		}
+
+		#app input:disabled {
+			background-color: #e9ecef;
+			color: #495057;
+		}
+
+		#app .score {
+			font-size: 24px;
+			margin-top: 20px;
+			font-weight: bold;
+		}
+
+		#app .credits {
+			margin-top: 10px;
+			font-size: 18px;
+			color: #888;
+		}
+
+		@keyframes shake {
+			0% { transform: translateX(0); }
+			25% { transform: translateX(-10px); }
+			50% { transform: translateX(10px); }
+			75% { transform: translateX(-10px); }
+			100% { transform: translateX(0); }
+		}
+
+		@keyframes winnerAnimation {
+			0% { transform: scale(1); }
+			50% { transform: scale(1.1); }
+			100% { transform: scale(1); }
+		}
+	</style>
+    <title>Addition</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/babel">
+		function App() {
+			const [state, setState] = React.useState({
+				num1: 1,
+				num2: 2,
+				response: "",
+				score: 0,
+				incorrect: false
+			});
+			
+			function inputKeyPress(event) {
+				if (event.key === "Enter") {
+					const answer = parseInt(state.response);
+					if (state.num1 + state.num2 === answer) {
+						setState({
+							...state,
+							num1: Math.ceil(Math.random() * 10),
+							num2: Math.ceil(Math.random() * 10),
+							score: state.score + 1,
+							response: "",
+							incorrect: false
+						});
+					} else {
+						setState({
+							...state,
+							score: state.score - 1,
+							response: "",
+							incorrect: true
+						});
+					}
+				}
+			}
+
+			function updateResponse(event) {
+				setState({
+					...state,
+					response: event.target.value
+				});
+			}
+
+			if (state.score === 10) {
+				return (
+					<div id="winner">
+						You won, Alaa! :)
+					</div>
+				);
+			}
+
+			return (
+				<div>
+					<div className={state.incorrect ? "incorrect" : ""} id="problem">
+						{state.num1} + {state.num2}
+					</div>
+					<input
+						autoFocus={true}
+						onKeyPress={inputKeyPress}
+						onChange={updateResponse}
+						value={state.response}
+					/>
+					<div className="score">Score: {state.score}</div>
+					<div className="credits">by Alaa & Ali</div>
+				</div>
+			);
+		}
+
+		ReactDOM.render(<App />, document.querySelector('#app'));
+	</script>
+</body>
+</html>
