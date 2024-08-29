@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conway's Game of Life</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(50, 10px);
+            gap: 1px;
+            background-color: #ccc;
+            border: 1px solid #999;
+        }
+        .cell {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+        }
+        .alive {
+            background-color: black;
+        }
+        button {
+            margin: 10px;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alaa's Game of Life</h1>
+    <div id="grid"></div>
+    <div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="clear">Clear</button>
+        <button id="random">Random</button>
+    </div>
+
+    <script>
+        const gridSize = 50;
+        const grid = document.getElementById('grid');
+        let cells = [];
+        let isRunning = false;
+        let intervalId;
+
+        function createGrid() {
+            for (let i = 0; i < gridSize * gridSize; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.addEventListener('click', () => toggleCell(i));
+                grid.appendChild(cell);
+                cells.push(false);
+            }
+        }
+
+        function toggleCell(index) {
+            cells[index] = !cells[index];
+            updateGrid();
+        }
+
+        function updateGrid() {
+            const cellElements = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                cellElements[index].classList.toggle('alive', cell);
+            });
+        }
+
+        function countNeighbors(index) {
+            const row = Math.floor(index / gridSize);
+            const col = index % gridSize;
+            let count = 0;
+
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    if (newRow >= 0 && newRow < gridSize && newCol >= 0 && newCol < gridSize) {
+                        count += cells[newRow * gridSize + newCol] ? 1 : 0;
+                    }
+                }
+            }
+
+            return count;
+        }
+
+        function nextGeneration() {
+            const newCells = [...cells];
+            for (let i = 0; i < cells.length; i++) {
+                const neighbors = countNeighbors(i);
+                if (cells[i]) {
+                    newCells[i] = neighbors === 2 || neighbors === 3;
+                } else {
+                    newCells[i] = neighbors === 3;
+                }
+            }
+            cells = newCells;
+            updateGrid();
+        }
+
+        function startSimulation() {
+            if (!isRunning) {
+                isRunning = true;
+                intervalId = setInterval(nextGeneration, 100);
+            }
+        }
+
+        function stopSimulation() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(intervalId);
+            }
+        }
+
+        function clearGrid() {
+            stopSimulation();
+            cells = cells.map(() => false);
+            updateGrid();
+        }
+
+        function randomizeGrid() {
+            cells = cells.map(() => Math.random() > 0.7);
+            updateGrid();
+        }
+
+        createGrid();
+
+        document.getElementById('start').addEventListener('click', startSimulation);
+        document.getElementById('stop').addEventListener('click', stopSimulation);
+        document.getElementById('clear').addEventListener('click', clearGrid);
+        document.getElementById('random').addEventListener('click', randomizeGrid);
+    </script>
+	<div>
+		Alaa I hope you are doing ok inshallah
+	</div>
+</body>
+</html>
