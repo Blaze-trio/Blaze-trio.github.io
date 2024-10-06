@@ -979,6 +979,12 @@
           <mxGeometry width="100" height="100" relative="1" as="geometry">
             <mxPoint x="1050" y="540" as="sourcePoint" />
             <mxPoint x="870" y="220" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1055" y="382" />
+              <mxPoint x="980" y="382" />
+              <mxPoint x="980" y="250" />
+              <mxPoint x="870" y="250" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="-Iq-VEOT-BMqQiDQKuYr-4" value="transfer from" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
